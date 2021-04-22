@@ -17,14 +17,22 @@ from torch.utils.data import DataLoader
 from eval import evaluate
 from retinanet import RetinaNet_efficientnet_b4
 
-def train(args):
-    train_csv = args.train_csv
-    test_csv  = args.test_csv
-    labels_csv = args.labels_csv
-    model_type = args.model_type
-    epochs     = int(args.epochs)
-    batch_size = int(args.batch_size)
+def train():#args):
+    #train_csv = args.train_csv
+    #test_csv  = args.test_csv
+    #labels_csv = args.labels_csv
+    #model_type = args.model_type
+    #epochs     = int(args.epochs)
+    #batch_size = int(args.batch_size)
     
+    train_csv = "train.csv"
+    test_csv  = "test.csv"
+    labels_csv = "labels.csv"
+    model_type = "b4"
+    epochs     = int(10)
+    batch_size = int(2)
+    
+
     dataset_train = CSVDataset(train_file=train_csv, class_list=labels_csv, 
                                transform=transforms.Compose([Normalizer(), Augmenter(), Resizer()]))
     dataset_val = CSVDataset(train_file=test_csv, class_list=labels_csv, 
@@ -90,14 +98,15 @@ def train(args):
         torch.save(retinanet, 'model_final.pt')
   
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('train_csv', help='Path to train csv')
-    parser.add_argument('test_csv', help='Path to test csv')
-    parser.add_argument('labels_csv', help='Path to class labels')
-    parser.add_argument('model_type', help='EfficientNet model type, \
-                        must be one of ["b0", "b1", "b2", "b3", "b4", "b5"]', default="b4")
-    parser.add_argument('epochs', help='Number of epochs for training', type=int, default=100)
-    parser.add_argument('batch_size', help='Batch size for training', type=int, default=1)
-    arguments = parser.parse_args()
+    #parser = argparse.ArgumentParser()
+    #parser.add_argument('train_csv', help='Path to train csv')
+    #parser.add_argument('test_csv', help='Path to test csv')
+    #parser.add_argument('labels_csv', help='Path to class labels')
+    #parser.add_argument('model_type', help='EfficientNet model type, \
+    #                    must be one of ["b0", "b1", "b2", "b3", "b4", "b5"]', default="b4")
+    #parser.add_argument('epochs', help='Number of epochs for training', type=int, default=100)
+    #parser.add_argument('batch_size', help='Batch size for training', type=int, default=1)
+    #arguments = parser.parse_args()
     
-    train(arguments)
+    #train(arguments)
+    train()
