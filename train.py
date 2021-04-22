@@ -25,8 +25,8 @@ def train():#args):
     #epochs     = int(args.epochs)
     #batch_size = int(args.batch_size)
     
-    train_csv = "train.csv"
-    test_csv  = "test.csv"
+    train_csv = "csvFiles\\train.csv"
+    test_csv  = "csvFiles\\test.csv"
     labels_csv = "labels.csv"
     model_type = "b4"
     epochs     = int(10)
