@@ -12,6 +12,8 @@ src = 0
 chg = 0
 lvl = 0
 
+im_width = 1628
+im_height = 650
 
 test_seq = [4, 5, 6, 7, 8, 18, 19, 21, 24, 26, 31, 38, 39, 41, 47]
 train_seq = list(range(1, 50))
@@ -19,7 +21,7 @@ train_seq = list(range(1, 50))
 for s in test_seq:
     train_seq.remove(s)
 
-test = True
+test = False
 
 if not (test):
     seqs = train_seq
@@ -46,7 +48,7 @@ labels_dict = {
 }
 
 
-frames_path = 'C:\\Data\\CURE-TSD\\frames'
+frames_path = 'C:\\Data\\CURE-TSD\\frames_cropped'
 labels_path = 'C:\\Data\\CURE-TSD\\labels'
 
 first = True
@@ -70,8 +72,11 @@ with open(csv_path, 'w', newline = '') as file:
             ymin = row[1]['lly']
             xmax = row[1]['urx']
             ymax = row[1]['ury']
-            label = row[1]['signType']
-            label = labels_dict[label]
+            #label = row[1]['signType']
+            #label = labels_dict[label]
+            label = 'sign'
+            if(ymax > im_width):
+                continue
             if(first):
                 first = False
             else:
